@@ -138,8 +138,10 @@ while run:
         if event.type == pygame.QUIT:
             run = False
 
+    ##Runs the base case cube with only rotation and not modifications
     toRun(0, 0, 0)
 
+    ##Runs the breathing of the cube
     if event.type == pygame.MOUSEBUTTONDOWN:
         if(count < 2):
             count+=1
@@ -154,6 +156,7 @@ while run:
             screen.fill(white)
             count = 0
 
+    ##Runs the x axis shift in the cube
     if event.type == pygame.KEYDOWN:
         if(event.key == pygame.K_UP):
             if(count_2 < 2):
@@ -173,7 +176,25 @@ while run:
             screen.fill(white)
             count_2 = 0
 
-    ##toRun(-0.1, 0.1)
-    ##toRun(0, 0)
 
+    ##Runs the x axis shift and the breathing at the same time
+    if (event.type == pygame.KEYDOWN):
+        if(event.key == pygame.K_DOWN):
+            if((count < 2) and (count_2 < 2)):
+                count = 5
+                count_2 = 5
+
+    if((count == 5) and (count_2 == 5)):
+        for i in range(50):
+            toRun(0.02, 0.02, i/400)
+            screen.fill(white)
+
+        for i in range(50):
+            toRun(-0.02, -0.02, -i/400)
+            screen.fill(white)
+            count = 0
+            count_2 = 0
+        
+###########
 pygame.quit()
+
